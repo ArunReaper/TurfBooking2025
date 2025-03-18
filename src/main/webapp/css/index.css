@@ -1,0 +1,61 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+/* Global styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #252525;
+}
+
+/* Menu toggle */
+#menu-toggle:checked + #menu {
+  display: block;
+}
+
+/* Image hover */
+.hover\:grow {
+  transition: all 0.3s;
+  transform: scale(1);
+  aspect-ratio: 1 !important;
+  object-fit: cover;
+}
+
+.hover\:grow:hover {
+  transform: scale(1.02);
+}
+
+/* Carousel */
+.carousel-open:checked + .carousel-item {
+  position: static;
+  opacity: 100;
+}
+
+.carousel-item {
+  transition: opacity 0.6s ease-out;
+}
+
+#carousel-1:checked ~ .control-1,
+#carousel-2:checked ~ .control-2,
+#carousel-3:checked ~ .control-3 {
+  display: block;
+}
+
+.carousel-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 2%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+}
