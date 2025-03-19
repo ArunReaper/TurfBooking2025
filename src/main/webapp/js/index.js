@@ -1,6 +1,6 @@
 async function fetchAndSetBackgroundImages() {
     try {
-        const response = await fetch('http://localhost:8080/wwp/webapi/service/getLandingPageImages'); // Replace with your actual URL
+        const response = await fetch('http://localhost:8081/wwp/webapi/service/getLandingPageImages'); // Replace with your actual URL
 
         const data = await response.json();
 
