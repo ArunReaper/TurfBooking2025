@@ -2,15 +2,18 @@ package koddas.web.war;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.ws.rs.FormParam;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.io.IOException;
+import java.util.List;
+
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -44,20 +47,38 @@ public class WebService {
 	@GET
 	@Path("/getLandingPageImages")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getLandingPageDetails() {
-		String img1 = "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1099&q=80";
-		String img2 = "https://images.unsplash.com/photo-1522040806052-b0aa2b039f00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80";
-		String img3 = "https://images.unsplash.com/photo-1652819804299-eea887780ca7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1436&q=80";
+	public Response getLandingPageDetails() throws SQLException, IOException {
 		Gson gson = new Gson();
 		LandingPageDTO landingPageUtil = new LandingPageDTO();
+		ArrayList<String> imageList = getDataFromDatabase();
 
-		landingPageUtil.setImageUrl1(img1);
-		landingPageUtil.setImageUrl2(img2);
-		landingPageUtil.setImageUrl3(img3);
+		landingPageUtil.setImageUrl1(imageList.get(0));
+		landingPageUtil.setImageUrl2(imageList.get(1));
+		landingPageUtil.setImageUrl3(imageList.get(2));
 
 		gson.toJson(landingPageUtil);
-
 		return Response.ok(gson.toJson(landingPageUtil)).build();
+	}
+
+	public ArrayList<String> getDataFromDatabase() throws SQLException, IOException {
+		System.out.println("getDataFromDatabase");
+
+		Connection conn = DatabaseConnection.getConnection();
+        assert conn != null;
+        Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM LANDINGPAGE");
+
+		ArrayList<String> imageList = new ArrayList<>();
+		while (rs.next()) {
+			imageList.add(rs.getString("IMG_URL"));
+		}
+
+		System.out.println(imageList);
+		rs.close();
+		stmt.close();
+		//conn.close(); // Don't close the connection here when using a connection pool
+
+		return imageList;
 	}
 
 	/**
