@@ -49,36 +49,35 @@ public class WebService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getLandingPageDetails() throws SQLException, IOException {
 		Gson gson = new Gson();
-		LandingPageDTO landingPageUtil = new LandingPageDTO();
-		ArrayList<String> imageList = getDataFromDatabase();
-
-		landingPageUtil.setImageUrl1(imageList.get(0));
-		landingPageUtil.setImageUrl2(imageList.get(1));
-		landingPageUtil.setImageUrl3(imageList.get(2));
+		LandingPageDTO landingPageUtil = getDataFromDatabase();
 
 		gson.toJson(landingPageUtil);
 		return Response.ok(gson.toJson(landingPageUtil)).build();
 	}
 
-	public ArrayList<String> getDataFromDatabase() throws SQLException, IOException {
+	public LandingPageDTO getDataFromDatabase() throws SQLException, IOException {
 		System.out.println("getDataFromDatabase");
+		LandingPageDTO landingPageUtil = new LandingPageDTO();
 
 		Connection conn = DatabaseConnection.getConnection();
         assert conn != null;
         Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM LANDINGPAGE");
 
-		ArrayList<String> imageList = new ArrayList<>();
+		ArrayList<List<String>> imageList = new ArrayList<>();
+		ArrayList<String> image = new ArrayList<>();
 		while (rs.next()) {
-			imageList.add(rs.getString("IMG_URL"));
+			image.add(rs.getString("IMG_DESCR"));
+			image.add(rs.getString("IMG_URL"));
+			imageList.add(image);
 		}
 
 		System.out.println(imageList);
 		rs.close();
 		stmt.close();
 		//conn.close(); // Don't close the connection here when using a connection pool
-
-		return imageList;
+		landingPageUtil.setImageUrlList(imageList);
+		return landingPageUtil;
 	}
 
 	/**

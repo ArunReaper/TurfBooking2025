@@ -2,6 +2,7 @@ package koddas.web.war;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * LandingPageDTO is a simple example of a Java bean; a small class that encapsulates a
@@ -18,10 +19,7 @@ public class LandingPageDTO implements Serializable {
 	@Serial
 	private static final long serialVersionUID = -3168349974480377280L;
 	
-	private String imageUrl1;
-	private String imageUrl2;
-	private String imageUrl3;
-	
+	private List<List<String>> imageUrlList;
 	/**
 	 * Empty constructor.
 	 * Gson uses reflection to construct beans. In order to be able to do so, a
@@ -31,27 +29,11 @@ public class LandingPageDTO implements Serializable {
 	public LandingPageDTO() {
 	}
 
-	public String getImageUrl1() {
-		return imageUrl1;
+	public List<List<String>> getImageUrlList() {
+		return imageUrlList;
 	}
 
-	public void setImageUrl1(String imageUrl1) {
-		this.imageUrl1 = imageUrl1;
-	}
-
-	public String getImageUrl2() {
-		return imageUrl2;
-	}
-
-	public void setImageUrl2(String imageUrl2) {
-		this.imageUrl2 = imageUrl2;
-	}
-
-	public String getImageUrl3() {
-		return imageUrl3;
-	}
-
-	public void setImageUrl3(String imageUrl3) {
-		this.imageUrl3 = imageUrl3;
+	public void setImageUrlList(List<List<String>> imageUrlList) {
+		this.imageUrlList = imageUrlList;
 	}
 }
