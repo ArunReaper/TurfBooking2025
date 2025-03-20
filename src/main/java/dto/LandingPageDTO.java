@@ -1,4 +1,4 @@
-package koddas.web.war;
+package dto;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class LandingPageDTO implements Serializable {
 	@Serial
 	private static final long serialVersionUID = -3168349974480377280L;
 	
-	private List<List<String>> imageUrlList;
+	private List<ImageDTO> imageList;
 	/**
 	 * Empty constructor.
 	 * Gson uses reflection to construct beans. In order to be able to do so, a
@@ -29,11 +29,11 @@ public class LandingPageDTO implements Serializable {
 	public LandingPageDTO() {
 	}
 
-	public List<List<String>> getImageUrlList() {
-		return imageUrlList;
+	public List<ImageDTO> getImageList() {
+		return imageList;
 	}
 
-	public void setImageUrlList(List<List<String>> imageUrlList) {
-		this.imageUrlList = imageUrlList;
+	public void setImageList(List<ImageDTO> imageList) {
+		this.imageList = imageList;
 	}
 }

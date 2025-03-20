@@ -2,15 +2,10 @@ package koddas.web.war;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
 import java.io.IOException;
-import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,7 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
+import service.LandingPageService;
 
 /**
  * A very simple web service.
@@ -48,38 +43,9 @@ public class WebService {
 	@Path("/getLandingPageImages")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getLandingPageDetails() throws SQLException, IOException {
-		Gson gson = new Gson();
-		LandingPageDTO landingPageUtil = getDataFromDatabase();
-
-		gson.toJson(landingPageUtil);
-		return Response.ok(gson.toJson(landingPageUtil)).build();
+		LandingPageService landingPageService = new LandingPageService();
+		return landingPageService.getLandingPageDetails();
 	}
-
-	public LandingPageDTO getDataFromDatabase() throws SQLException, IOException {
-		System.out.println("getDataFromDatabase");
-		LandingPageDTO landingPageUtil = new LandingPageDTO();
-
-		Connection conn = DatabaseConnection.getConnection();
-        assert conn != null;
-        Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM LANDINGPAGE");
-
-		ArrayList<List<String>> imageList = new ArrayList<>();
-		ArrayList<String> image = new ArrayList<>();
-		while (rs.next()) {
-			image.add(rs.getString("IMG_DESCR"));
-			image.add(rs.getString("IMG_URL"));
-			imageList.add(image);
-		}
-
-		System.out.println(imageList);
-		rs.close();
-		stmt.close();
-		//conn.close(); // Don't close the connection here when using a connection pool
-		landingPageUtil.setImageUrlList(imageList);
-		return landingPageUtil;
-	}
-
 	/**
 	 *  Prints current time when /wwp-1.0.0/webapi/service/time is accessed.
 	 * 
