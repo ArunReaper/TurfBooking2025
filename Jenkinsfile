@@ -24,7 +24,7 @@ pipeline {
                     ]
                 ], 
                     credentialsId: 'nexus3', 
-                    groupId: 'koddas.web.war', 
+                    groupId: 'booktheturf.web.war',
                     nexusUrl: '10.0.0.91:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 

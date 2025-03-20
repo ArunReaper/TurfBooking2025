@@ -4,7 +4,7 @@ package service;
 import com.google.gson.Gson;
 import dto.ImageDTO;
 import dto.LandingPageDTO;
-import koddas.web.war.DatabaseConnection;
+import booktheturf.web.war.DatabaseConnection;
 
 import javax.ws.rs.core.Response;
 import java.io.IOException;

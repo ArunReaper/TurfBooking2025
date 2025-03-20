@@ -1,4 +1,4 @@
-package koddas.web.war;
+package booktheturf.web.war;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
