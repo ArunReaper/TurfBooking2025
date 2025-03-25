@@ -1,4 +1,4 @@
-package dto;
+package booktheturf.web.war.dto;
 
 public class ImageDTO {
 

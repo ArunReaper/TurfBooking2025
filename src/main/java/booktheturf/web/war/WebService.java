@@ -13,18 +13,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import service.LandingPageService;
+import booktheturf.web.war.service.LandingPageService;
 
 /**
- * A very simple web service.
+ * A very simple web booktheturf.web.war.service.
  * 
  * @author Johan Holmberg
  */
-@Path("service")  // By altering the argument, you'll change the service's URL
+@Path("service")  // By altering the argument, you'll change the booktheturf.web.war.service's URL
 public class WebService {
 	
 	/**
-	 * Prints "It's working" when /wwp-1.0.0/webapi/service is accessed.
+	 * Prints "It's working" when /wwp-1.0.0/webapi/booktheturf.web.war.service is accessed.
 	 * 
 	 * @return A web response.
 	 */
@@ -35,7 +35,7 @@ public class WebService {
 	}
 	
 	/**
-	 * Prints "Hello, World!" when /wwp-1.0.0/webapi/service/hello is accessed.
+	 * Prints "Hello, World!" when /wwp-1.0.0/webapi/booktheturf.web.war.service/hello is accessed.
 	 * 
 	 * @return A web response.
 	 */
@@ -47,8 +47,8 @@ public class WebService {
 		return landingPageService.getLandingPageDetails();
 	}
 	/**
-	 *  Prints current time when /wwp-1.0.0/webapi/service/time is accessed.
-	 * 
+	 *  Prints current time when /wwp-1.0.0/webapi/booktheturf.web.war.service/time is accessed.
+	 *
 	 * @return A web response.
 	 */
 	@GET
@@ -58,15 +58,15 @@ public class WebService {
 		Response response = null;
 		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 		Date dateobj = new Date();
-		
+
 		response = Response.ok(df.format(dateobj)).build();
-		
+
 		return response;
 	}
 
 	/**
 	 *  Returns a JSON representation of a LandingPageDTO object when
-	 *  /wwp-1.0.0/webapi/service/send is accessed.
+	 *  /wwp-1.0.0/webapi/booktheturf.web.war.service/send is accessed.
 	 * 
 	 * @param name Mr Bean's new name
 	 * @param age Mr Bean's new age
@@ -96,7 +96,7 @@ public class WebService {
 	
 	/**
 	 *  Returns a JSON representation of a LandingPageDTO object and a recipient when
-	 *  /wwp-1.0.0/webapi/service/send/{to} is accessed.
+	 *  /wwp-1.0.0/webapi/booktheturf.web.war.service/send/{to} is accessed.
 	 *  
 	 *  The {to} part of the URL can be any URL-encoded string.
 	 * 

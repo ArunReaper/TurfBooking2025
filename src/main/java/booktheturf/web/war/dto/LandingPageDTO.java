@@ -1,4 +1,4 @@
-package dto;
+package booktheturf.web.war.dto;
 
 import java.io.Serial;
 import java.io.Serializable;
