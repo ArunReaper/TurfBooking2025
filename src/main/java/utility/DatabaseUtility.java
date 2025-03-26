@@ -18,7 +18,6 @@ public class DatabaseUtility {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM LANDINGPAGE");
 
-        rs.close();
         stmt.close();
         //conn.close(); // Don't close the connection here when using a connection pool
         return rs;
