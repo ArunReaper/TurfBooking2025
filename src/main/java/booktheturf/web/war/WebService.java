@@ -77,17 +77,7 @@ public class WebService {
 		LoginService landingPageService = new LoginService();
 		return landingPageService.login(loginRequestDTO);
 	}
-	/**
-	 *  Returns a JSON representation of a LandingPageDTO object when
-	 *  /wwp-1.0.0/webapi/booktheturf.web.war.service/send is accessed.
-	 * 
-	 * @param name Mr Bean's new name
-	 * @param age Mr Bean's new age
-	 * @param nationality Mr Bean's new nationality
-	 * @param carBrand The brand of Mr Bean's new car
-	 * @return A web response.
-	 */
-//	@POST
+    //	@POST
 //	@Path("/send")
 //	@Produces(MediaType.APPLICATION_JSON)
 //	public Response send(@FormParam("name") String name,
