@@ -14,8 +14,8 @@ public class LoginService {
 
     public Response login(LoginRequestDTO loginRequestDTO) throws SQLException, IOException {
 
-        String username = loginRequestDTO.getUserId();
-        String hashedPassword = loginRequestDTO.getHashedPassword(); //The password sent from the client.
+        String username = loginRequestDTO.getUsername();
+        String password = loginRequestDTO.getPassword();
         String storedHashedPassword = AuthenticationUtility.getHashedPasswordFromDatabase(username); //Retrieve from database.
         String storedSalt = AuthenticationUtility.getSaltFromDatabase(username); //Retrieve from Database.
 
@@ -24,7 +24,7 @@ public class LoginService {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid username or password").build();
         }
 
-        boolean passwordMatch = BCrypt.checkpw(hashedPassword, storedHashedPassword);
+        boolean passwordMatch = BCrypt.checkpw(password, storedHashedPassword);
 
         if (passwordMatch) {
             // Login successful
