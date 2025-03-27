@@ -2,17 +2,17 @@
 
 const bcrypt = require('bcryptjs');
 
-function hashPassword(password) {
+async function hashPassword(password) {
     const salt = await bcrypt.genSalt(10); // Generate a salt
     const hashedPassword = await bcrypt.hash(password, salt); // Hash with salt
     return { salt, hashedPassword };
 }
 
-function verifyPassword(password, hashedPassword) {
+async function verifyPassword(password, hashedPassword) {
     return await bcrypt.compare(password, hashedPassword);
 }
 
-function login(userId, plainTextPassword) {
+async function login(userId, plainTextPassword) {
 
     // Hash the password on the client-side.
     const { salt, hashedPassword } = hashPassword(plainTextPassword);
@@ -26,7 +26,7 @@ function login(userId, plainTextPassword) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userId, password }), // Send identifier and password
+            body: JSON.stringify({ userId, hashedPassword }), // Send identifier and password
         });
 
         if (!response.ok) {
