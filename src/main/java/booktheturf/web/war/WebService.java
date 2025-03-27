@@ -65,7 +65,7 @@ public class WebService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response login(LoginRequestDTO loginRequestDTO) throws SQLException, IOException {
-		LoginService landingPageService = new LoginService();
-		return landingPageService.login(loginRequestDTO);
+		LoginService loginService = new LoginService();
+		return loginService.login(loginRequestDTO);
 	}
 }
