@@ -1,15 +1,12 @@
-// login.js
 
-console.log(bcrypt); // Check if bcrypt is defined
-
-async function hashPassword(password) {
-    const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(password, salt);
-    return hashedPassword;
-}
+//async function hashPassword(password) {
+//    const salt = bcrypt.genSaltSync(10);
+//    const hashedPassword = bcrypt.hashSync(password, salt);
+//    return hashedPassword;
+//}
 
 async function login(identifier, password) {
-    const hashedPassword = await hashPassword(password);
+    //const hashedPassword = await hashPassword(password);
 
     try {
         const response = await fetch('http://localhost:8080/wwp/webapi/service/login', {
@@ -17,7 +14,7 @@ async function login(identifier, password) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ identifier, password: hashedPassword }), // Send hashedPassword
+            body: JSON.stringify({ identifier, password }),
         });
 
         if (!response.ok) {
