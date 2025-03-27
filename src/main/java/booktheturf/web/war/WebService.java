@@ -46,11 +46,7 @@ public class WebService {
 		LandingPageService landingPageService = new LandingPageService();
 		return landingPageService.getLandingPageDetails();
 	}
-	/**
-	 *  Prints current time when /wwp-1.0.0/webapi/booktheturf.web.war.service/time is accessed.
-	 *
-	 * @return A web response.
-	 */
+
 	@GET
 	@Path("/time")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -64,11 +60,6 @@ public class WebService {
 		return response;
 	}
 
-	/**
-	 * Prints "Hello, World!" when /wwp-1.0.0/webapi/booktheturf.web.war.service/hello is accessed.
-	 *
-	 * @return A web response.
-	 */
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -77,61 +68,4 @@ public class WebService {
 		LoginService landingPageService = new LoginService();
 		return landingPageService.login(loginRequestDTO);
 	}
-    //	@POST
-//	@Path("/send")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response send(@FormParam("name") String name,
-//			@FormParam("age") int age,
-//			@FormParam("nationality") String nationality,
-//			@FormParam("car_brand") String carBrand) {
-//		Gson gson = new Gson();
-//		LandingPageDTO bean = new LandingPageDTO();
-//
-//		bean.setName(name);
-//		bean.setAge(age);
-//		bean.setNationality(nationality);
-//		bean.setCarBrand(carBrand);
-//
-//		gson.toJson(bean);
-//
-//		return Response.ok(gson.toJson(bean)).build();
-//	}
-	
-	/**
-	 *  Returns a JSON representation of a LandingPageDTO object and a recipient when
-	 *  /wwp-1.0.0/webapi/booktheturf.web.war.service/send/{to} is accessed.
-	 *  
-	 *  The {to} part of the URL can be any URL-encoded string.
-	 * 
-	 * @param to The name of the recipient of the Mr Bean object
-	 * @param name Mr Bean's new name
-	 * @param age Mr Bean's new age
-	 * @param nationality Mr Bean's new nationality
-	 * @param carBrand The brand of Mr Bean's new car
-	 * @return A web response.
-	 */
-//	@POST
-//	@Path("/send/{to}") // {to} will map to the to parameter.
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response send(@PathParam("to") String to,
-//			@FormParam("name") String name,
-//			@FormParam("age") int age,
-//			@FormParam("nationality") String nationality,
-//			@FormParam("car_brand") String carBrand) {
-//		Gson gson = new Gson();
-//		LandingPageDTO bean = new LandingPageDTO();
-//		Map<String, Object> map = new HashMap<String, Object>();
-//
-//		bean.setName(name);
-//		bean.setAge(age);
-//		bean.setNationality(nationality);
-//		bean.setCarBrand(carBrand);
-//
-//		map.put("to", to);
-//		map.put("mr_bean", bean);
-//
-//		gson.toJson(map);
-//
-//		return Response.ok(gson.toJson(map)).build();
-//	}
 }

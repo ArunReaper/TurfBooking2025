@@ -5,7 +5,7 @@
 //    return hashedPassword;
 //}
 
-async function login(identifier, password) {
+async function login(username, password) {
     //const hashedPassword = await hashPassword(password);
 
     try {
@@ -14,7 +14,7 @@ async function login(identifier, password) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ identifier, password }),
+            body: JSON.stringify({ username, password }),
         });
 
         if (!response.ok) {
