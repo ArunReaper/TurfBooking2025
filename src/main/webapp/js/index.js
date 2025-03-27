@@ -10,9 +10,10 @@ async function fetchAndSetBackgroundImages() {
 
             // Check if there are enough images in the list
             if (imageList.length >= 3) {
-                document.getElementById('slide1').style.backgroundImage = `url(${imageList[0].imageUrl})`;
-                document.getElementById('slide2').style.backgroundImage = `url(${imageList[1].imageUrl})`;
-                document.getElementById('slide3').style.backgroundImage = `url(${imageList[2].imageUrl})`;
+                document.getElementById('slide1').style.backgroundImage = "url('images/turf_booking.jpeg')";
+                document.getElementById('slide2').style.backgroundImage = "url('images/champions_turf.jpeg')";
+                document.getElementById('slide3').style.backgroundImage = "url('images/RMD_turf.jpeg')";
+                //document.getElementById('slide3').style.backgroundImage = `url(${imageList[2].imageUrl})`;
             } else {
                 console.error('Not enough images in the response.');
             }
