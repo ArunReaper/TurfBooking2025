@@ -5,33 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
     <link rel="icon" href="images/desk.jpg">
-    <!-- icons -->
+    <script src="js/login.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>Sports Nation</title>
 </head>
 <body>
 <div class="login-box">
-    <form action="#">
+    <form id="loginForm">
         <h2>Login</h2>
         <div class="input-box">
-        <span class="icon">
-          <i class="fa-solid fa-envelope"></i>
-        </span>
-            <input id="email" type="email" name="email" required>
-            <label for="email">Email</label>
+            <span class="icon">
+                <i class="fa-solid fa-user"></i>
+            </span>
+            <input id="identifier" type="text" name="identifier" required>
+            <label for="identifier">Email or Username</label>
         </div>
         <div class="input-box">
-        <span class="icon">
-          <i class="fa-solid fa-lock"></i>
-        </span>
-            <input id="password" type="password" name="email" required>
-            <label for="password">password</label>
+            <span class="icon">
+                <i class="fa-solid fa-lock"></i>
+            </span>
+            <input id="password" type="password" name="password" required>
+            <label for="password">Password</label>
         </div>
         <div class="remember-forgot">
             <label>
                 <input type="checkbox"> Remember me
             </label>
-            <a href="#">forgot password?</a>
+            <a href="#">Forgot password?</a>
         </div>
         <button type="submit">Login</button>
         <div class="link">
@@ -42,38 +42,15 @@
         </div>
     </form>
 </div>
+
 <script>
     document.getElementById('loginForm').addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
-        const email = document.getElementById('email').value;
+        const identifier = document.getElementById('identifier').value; // Use identifier instead of email
         const password = document.getElementById('password').value;
 
-        try {
-            const response = await fetch('http://localhost:8080/wwp/webapi/service/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }), // Send email and password as JSON
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                alert(`Login failed: ${errorData.message || 'Unknown error'}`);
-                return;
-            }
-
-            const data = await response.json();
-            alert(data.message || 'Login successful'); // Display success message
-
-            // Redirect or perform other actions upon successful login
-            window.location.href = 'index.html'; // Example: Redirect to index.html
-
-        } catch (error) {
-            console.error('Login error:', error);
-            alert('An error occurred during login.');
-        }
+        login(identifier,password);
     });
 </script>
 </body>

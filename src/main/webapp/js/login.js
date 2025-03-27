@@ -20,37 +20,30 @@ function login(userId, plainTextPassword) {
     console.log('Salt:', salt);
     console.log('Hashed Password:', hashedPassword);
 
-    const userData = {
-        salt: salt,
-        hashedPassword: hashedPassword,
-        userId: userId
-    };
+    try {
+        const response = await fetch('http://localhost:8080/wwp/webapi/service/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId, password }), // Send identifier and password
+        });
 
-    const userDataJson = JSON.stringify(userData);
-
-    // Send the salt and hashedPassword to the backend via API call.
-    fetch('http://localhost:8080/wwp/webapi/service/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json', // Indicate JSON data
-        },
-        body: userDataJson, // Send the JSON string in the request body
-    })
-        .then((response) => {
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorData = await response.json();
+            alert(`Login failed: ${errorData.message || 'Unknown error'}`);
+            return;
         }
-        return response.json(); // Or response.text() if the backend sends plain text
-    })
-        .then((data) => {
-        // Handle the response data from the backend (JSON object)
-        console.log('Response from server:', data);
-        // ... process data ...
-    })
-        .catch((error) => {
-        // Handle errors
-        console.error('Fetch error:', error);
-    });
+
+        const data = await response.json();
+        alert(data.message || 'Login successful');
+
+        window.location.href = 'index.html';
+
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('An error occurred during login.');
+    }
 
     //const inputPassword = 'mySecretPassword';
     //const passwordMatch = await verifyPassword(inputPassword, hashedPassword);
