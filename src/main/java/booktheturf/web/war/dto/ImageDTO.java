@@ -20,4 +20,12 @@ public class ImageDTO {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    @Override
+    public String toString() {
+        return "ImageDTO{" +
+                "imageDescr='" + imageDescr + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }
