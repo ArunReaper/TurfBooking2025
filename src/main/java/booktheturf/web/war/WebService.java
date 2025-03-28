@@ -13,9 +13,7 @@ import javax.ws.rs.core.Response;
 
 import booktheturf.web.war.dto.LoginRequestDTO;
 import booktheturf.web.war.dto.UserRegistrationRequestDTO;
-import booktheturf.web.war.service.LandingPageService;
-import booktheturf.web.war.service.LoginService;
-import booktheturf.web.war.service.UserRegistration;
+import booktheturf.web.war.service.*;
 
 /**
  * A very simple web booktheturf.web.war.service.
@@ -24,23 +22,18 @@ import booktheturf.web.war.service.UserRegistration;
  */
 @Path("service")  // By altering the argument, you'll change the booktheturf.web.war.service's URL
 public class WebService {
-	
+
 	/**
 	 * Prints "It's working" when /wwp-1.0.0/webapi/booktheturf.web.war.service is accessed.
-	 * 
+	 *
 	 * @return A web response.
 	 */
-	@GET // This endpoint will be available using GET and GET only 
+	@GET // This endpoint will be available using GET and GET only
 	@Produces(MediaType.TEXT_PLAIN) // The response will be in plain text.
 	public Response root() {
 		return Response.ok("It's working").build();
 	}
-	
-	/**
-	 * Prints "Hello, World!" when /wwp-1.0.0/webapi/booktheturf.web.war.service/hello is accessed.
-	 * 
-	 * @return A web response.
-	 */
+
 	@GET
 	@Path("/getLandingPageImages")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -72,11 +65,11 @@ public class WebService {
 	}
 
 	@GET
-	@Path("/checkIfUserExists")
+	@Path("/checkIfUserExists/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response checkIfUserExists() throws SQLException, IOException {
-		LandingPageService landingPageService = new LandingPageService();
-		return landingPageService.getLandingPageDetails();
+	public boolean checkIfUserExists(@PathParam("username") String username) throws SQLException, IOException {
+		UserService userService = new UserService();
+		return userService.checkIfUserExists(username);
 	}
 
 	@POST
@@ -86,5 +79,13 @@ public class WebService {
 	public Response registerUser(UserRegistrationRequestDTO requestDTO) throws SQLException, IOException {
 		UserRegistration userRegistration = new UserRegistration();
 		return userRegistration.registerUser(requestDTO);
+	}
+
+	@GET
+	@Path("/getArenas")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getArenas() throws SQLException, IOException {
+		ArenaService arenaService = new ArenaService();
+		return arenaService.getArenas();
 	}
 }

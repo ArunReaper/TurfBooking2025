@@ -12,6 +12,8 @@ import utility.UserUtility;
 
 public class LoginService {
 
+    private static final String THIS_COMPONENT_NAME = LoginService.class.getName();
+
     public Response login(LoginRequestDTO loginRequestDTO) throws SQLException, IOException {
 
         String username = loginRequestDTO.getUsername();

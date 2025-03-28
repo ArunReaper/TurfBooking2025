@@ -15,6 +15,8 @@ import java.util.List;
 public class LandingPageService
 {
 
+	private static final String THIS_COMPONENT_NAME = LandingPageService.class.getName();
+
 	public Response getLandingPageDetails() throws SQLException, IOException {
 		Gson gson = new Gson();
 		LandingPageDTO landingPageUtil = getDataFromDatabase();
