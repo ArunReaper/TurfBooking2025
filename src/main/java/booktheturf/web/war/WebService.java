@@ -12,13 +12,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import booktheturf.web.war.dto.LoginRequestDTO;
+import booktheturf.web.war.dto.UserRegistrationRequestDTO;
 import booktheturf.web.war.service.LandingPageService;
 import booktheturf.web.war.service.LoginService;
+import booktheturf.web.war.service.UserRegistration;
 
 /**
  * A very simple web booktheturf.web.war.service.
  * 
- * @author Johan Holmberg
+ * @author Arun Shinde
  */
 @Path("service")  // By altering the argument, you'll change the booktheturf.web.war.service's URL
 public class WebService {
@@ -51,7 +53,7 @@ public class WebService {
 	@Path("/time")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response time() {
-		Response response = null;
+		Response response;
 		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 		Date dateobj = new Date();
 
@@ -67,5 +69,22 @@ public class WebService {
 	public Response login(LoginRequestDTO loginRequestDTO) throws SQLException, IOException {
 		LoginService loginService = new LoginService();
 		return loginService.login(loginRequestDTO);
+	}
+
+	@GET
+	@Path("/checkIfUserExists")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response checkIfUserExists() throws SQLException, IOException {
+		LandingPageService landingPageService = new LandingPageService();
+		return landingPageService.getLandingPageDetails();
+	}
+
+	@POST
+	@Path("/register")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response registerUser(UserRegistrationRequestDTO requestDTO) throws SQLException, IOException {
+		UserRegistration userRegistration = new UserRegistration();
+		return userRegistration.registerUser(requestDTO);
 	}
 }

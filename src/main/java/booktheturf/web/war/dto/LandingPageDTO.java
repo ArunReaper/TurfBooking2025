@@ -9,7 +9,7 @@ import java.util.List;
  * number of values. It exposes an empty constructor and has a number of
  * members that are accessible through getters and setters.
  * 
- * @author Johan Holmberg
+ * @author Arun Shinde
  */
 public class LandingPageDTO implements Serializable {
 	/**
@@ -27,10 +27,6 @@ public class LandingPageDTO implements Serializable {
 	 * attributes will be set by Gson upon object creation.
 	 */
 	public LandingPageDTO() {
-	}
-
-	public List<ImageDTO> getImageList() {
-		return imageList;
 	}
 
 	public void setImageList(List<ImageDTO> imageList) {
