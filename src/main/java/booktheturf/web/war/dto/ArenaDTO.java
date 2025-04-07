@@ -17,6 +17,16 @@ public class ArenaDTO {
 
     private List<String> sportsAvailable;
 
+    private int noOfTurfs;
+
+    public int getNoOfTurfs() {
+        return noOfTurfs;
+    }
+
+    public void setNoOfTurfs(int noOfTurfs) {
+        this.noOfTurfs = noOfTurfs;
+    }
+
     public int getId() {
         return id;
     }

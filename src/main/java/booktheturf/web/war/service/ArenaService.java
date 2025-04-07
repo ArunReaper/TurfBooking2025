@@ -16,10 +16,11 @@ public class ArenaService {
 
     private static final String THIS_COMPONENT_NAME = ArenaService.class.getName();
 
-    private static final String SEL_ALL_ARENAS = ArenaService.class.getName();
+    private static final String SEL_ALL_ARENAS = "Select * from turfs";
 
-    public Response getArenas() throws SQLException, IOException {
-        ResultSet rs = DatabaseUtility.executeSelectQuery(SEL_ALL_ARENAS);
+    public Response getArenas(ArenaDTO requestDTO) throws SQLException, IOException {
+
+        ResultSet rs = DatabaseUtility.executeSelectQuery(SEL_ALL_ARENAS, requestDTO.getNoOfTurfs());
         Gson gson = new Gson();
         System.out.println(THIS_COMPONENT_NAME+ "::rs::" + rs);
         List<ArenaDTO> listOfArenas = new ArrayList<>();

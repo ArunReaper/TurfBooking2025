@@ -11,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import booktheturf.web.war.dto.ArenaDTO;
 import booktheturf.web.war.dto.LoginRequestDTO;
 import booktheturf.web.war.dto.UserRegistrationRequestDTO;
 import booktheturf.web.war.service.*;
@@ -84,8 +85,10 @@ public class WebService {
 	@GET
 	@Path("/getArenas")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getArenas() throws SQLException, IOException {
+	public Response getArenas(@PathParam("noOfTurfs") int noOfTurfs) throws SQLException, IOException {
 		ArenaService arenaService = new ArenaService();
-		return arenaService.getArenas();
+		ArenaDTO arenaDTO = new ArenaDTO();
+		arenaDTO.setNoOfTurfs(noOfTurfs);
+		return arenaService.getArenas(arenaDTO);
 	}
 }
