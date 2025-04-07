@@ -22,7 +22,7 @@ public class ArenaService {
 
         ResultSet rs = DatabaseUtility.executeSelectQuery(SEL_ALL_ARENAS, requestDTO.getNoOfTurfs());
         Gson gson = new Gson();
-        System.out.println(THIS_COMPONENT_NAME+ "::rs::" + rs);
+        System.out.println(THIS_COMPONENT_NAME+ "::rs::" + rs.getRow());
         List<ArenaDTO> listOfArenas = new ArrayList<>();
 
         while (rs.next()) {
