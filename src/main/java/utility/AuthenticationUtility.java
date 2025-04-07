@@ -1,10 +1,16 @@
 package utility;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AuthenticationUtility {
+
+    public static String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
 
     public static String getHashedPasswordFromDatabase(String username) throws SQLException, IOException {
         //Replace this with your actual database retrieval logic.

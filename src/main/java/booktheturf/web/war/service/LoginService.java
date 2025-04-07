@@ -17,7 +17,8 @@ public class LoginService {
     public Response login(LoginRequestDTO loginRequestDTO) throws SQLException, IOException {
 
         String username = loginRequestDTO.getUsername();
-        String password = loginRequestDTO.getPassword();
+        String password = AuthenticationUtility.hashPassword(loginRequestDTO.getPassword());
+
         String storedHashedPassword = AuthenticationUtility.getHashedPasswordFromDatabase(username); //Retrieve from database.
         String storedSalt = AuthenticationUtility.getSaltFromDatabase(username); //Retrieve from Database.
 
