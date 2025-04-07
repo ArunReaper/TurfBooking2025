@@ -16,7 +16,7 @@ public class ArenaService {
 
     private static final String THIS_COMPONENT_NAME = ArenaService.class.getName();
 
-    private static final String SEL_ALL_ARENAS = "Select * from turfs";
+    private static final String SEL_ALL_ARENAS = "Select * from turfs FETCH FIRST ? ROWS ONLY";
 
     public Response getArenas(ArenaDTO requestDTO) throws SQLException, IOException {
 
