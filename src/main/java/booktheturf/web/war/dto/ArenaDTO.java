@@ -74,4 +74,17 @@ public class ArenaDTO {
     public void setSportsAvailable(List<String> sportsAvailable) {
         this.sportsAvailable = sportsAvailable;
     }
+
+    @Override
+    public String toString() {
+        return "ArenaDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", location='" + location + '\'' +
+                ", bookingPrice=" + bookingPrice +
+                ", sportsAvailable=" + sportsAvailable +
+                ", noOfTurfs=" + noOfTurfs +
+                '}';
+    }
 }

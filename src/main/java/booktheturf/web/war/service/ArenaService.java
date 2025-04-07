@@ -32,6 +32,7 @@ public class ArenaService {
             arenaDTO.setDescription(rs.getString("DESCRIPTION"));
             arenaDTO.setLocation(rs.getString("LOCATION"));
             arenaDTO.setSportsAvailable(Arrays.asList(rs.getString("AVAILABLE_SPORTS").split("~")));
+            System.out.println(arenaDTO);
             listOfArenas.add(arenaDTO);
         }
         return Response.ok(gson.toJson(listOfArenas)).build();
